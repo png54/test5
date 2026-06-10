@@ -1,28 +1,77 @@
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx0dsPjCLrDGzfi5Vl1vSN9mYIRko-ORddU5FzD3mWSM-8AEjUL0Wzz879z_ow6sW57Ig/exec";
 
-const wilayas = [
-    "01-أدرار", "02-الشلف", "03-الأغواط", "04-أم البواقي", "05-باتنة", "06-بجاية", "07-بسكرة", "08-بشار", "09-البليدة", "10-البويرة",
-    "11-تمنراست", "12-تبسة", "13-تلمسان", "14-تيارت", "15-تيزي وزو", "16-الجزائر", "17-الجلفة", "18-جيجل", "19-سطيف", "20-سعيدة",
-    "21-سكيكدة", "22-سيدي بلعباس", "23-عنابة", "24-قالمة", "25-قسنطينة", "26-المدية", "27-مستغانم", "28-المسيلة", "29-معسكر", "30-ورقلة",
-    "31-وهران", "32-البيض", "33-إليزي", "34-برج بوعريريج", "35-بومرداس", "36-الطارف", "37-تندوف", "38-تيسمسيلت", "39-الوادي", "40-خنشلة",
-    "41-سوق أهراس", "42-تيبازة", "43-ميلة", "44-عين الدفلى", "45-النعامة", "46-عين تموشنت", "47-غرداية", "48-غليزان", "49-تيميمون", "50-برج باجي مختار",
-    "51-أولاد جلال", "52-بني عباس", "53-عين صالح", "54-عين قزام", "55-تقرت", "56-جانت", "57-المغير", "58-المنيعة"
+// 1. نظام الترجمة
+const i18n = {
+    ar: {
+        home: "الرئيسية", clothes: "ملابس", shoes: "أحذية",
+        heroTitle: "مجموعة جديدة", heroSub: "اكتشف الفخامة في كل خطوة",
+        shopNow: "تسوق الآن", newArrivals: "وصلنا حديثاً",
+        confirmOrder: "تأكيد الطلب", buyNow: "تأكيد الشراء",
+        namePlaceholder: "الاسم الكامل", addressPlaceholder: "العنوان بالتفصيل"
+    },
+    fr: {
+        home: "Accueil", clothes: "Vêtements", shoes: "Chaussures",
+        heroTitle: "NOUVELLE COLLECTION", heroSub: "Découvrez le luxe à chaque pas",
+        shopNow: "Acheter", newArrivals: "Nouveautés",
+        confirmOrder: "Confirmer la commande", buyNow: "Acheter maintenant",
+        namePlaceholder: "Nom Complet", addressPlaceholder: "Adresse Détillée"
+    }
+};
+
+let currentLang = 'ar';
+
+// 2. بيانات تجريبية (تظهر إذا كان الـ Sheet فارغاً)
+const dummyProducts = [
+    { ProductID: '1', Name: 'المنتج التجريبي 1', NewPrice: '4500', MainImage: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff', Sizes: '40,41,42', Colors: 'أسود,أبيض', Visible: true },
+    { ProductID: '2', Name: 'المنتج التجريبي 2', NewPrice: '3800', MainImage: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77', Sizes: 'M,L,XL', Colors: 'أزرق,رمادي', Visible: true }
 ];
 
-let allProducts = [];
+// 3. الولايات الجزائرية
+const wilayas = ["01-Adrar", "02-Chlef", "03-Laghouat", "04-Oum El Bouaghi", "05-Batna", "06-Bejaia", "07-Biskra", "08-Bechar", "09-Blida", "10-Bouira", "16-Alger", "19-Setif", "31-Oran"]; // اختصار للتبسيط
 
-// جلب البيانات عند البداية
-window.addEventListener('DOMContentLoaded', () => {
+window.onload = () => {
+    initApp();
+    setupEventListeners();
+};
+
+async function initApp() {
     loadWilayas();
+    updateUI();
     fetchData();
-});
+}
+
+function setupEventListeners() {
+    // تبديل اللغة
+    document.getElementById('langBtn').onclick = function() {
+        currentLang = currentLang === 'ar' ? 'fr' : 'ar';
+        this.innerText = currentLang === 'ar' ? 'FR' : 'AR';
+        document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+        updateUI();
+    };
+
+    // إغلاق المودال
+    document.querySelector('.close-modal').onclick = () => {
+        document.getElementById('orderModal').style.display = 'none';
+    };
+
+    // إرسال النموذج
+    document.getElementById('orderForm').onsubmit = handleOrder;
+}
+
+function updateUI() {
+    document.querySelectorAll('[data-key]').forEach(el => {
+        el.innerText = i18n[currentLang][el.getAttribute('data-key')];
+    });
+    document.querySelectorAll('[data-placeholder]').forEach(el => {
+        el.placeholder = i18n[currentLang][el.getAttribute('data-placeholder')];
+    });
+}
 
 function loadWilayas() {
     const select = document.getElementById('wilaya');
     wilayas.forEach(w => {
         let opt = document.createElement('option');
-        opt.value = w;
-        opt.textContent = w;
+        opt.value = w; opt.innerText = w;
         select.appendChild(opt);
     });
 }
@@ -30,98 +79,74 @@ function loadWilayas() {
 async function fetchData() {
     try {
         const res = await fetch(`${SCRIPT_URL}?action=getProducts`);
-        allProducts = await res.json();
-        renderProducts(allProducts);
+        const data = await res.json();
+        renderProducts(data.length > 0 ? data : dummyProducts);
+    } catch (e) {
+        console.log("Using dummy data...");
+        renderProducts(dummyProducts);
+    } finally {
         document.getElementById('loader').style.display = 'none';
-    } catch (err) {
-        showToast("خطأ في الاتصال بالخادم");
     }
 }
 
-function renderProducts(items) {
+function renderProducts(products) {
     const grid = document.getElementById('productsGrid');
-    grid.innerHTML = items.map(p => `
-        <div class="product-card" onclick="openOrderModal('${p.ProductID}')">
+    grid.innerHTML = products.map(p => `
+        <div class="product-card" onclick="openOrderModal(${JSON.stringify(p).replace(/"/g, '&quot;')})">
             <img src="${p.MainImage}" alt="${p.Name}">
             <div class="product-info">
                 <h4>${p.Name}</h4>
-                <p class="price">${p.NewPrice} د.ج</p>
+                <p class="price">${p.NewPrice} DZD</p>
             </div>
         </div>
     `).join('');
 }
 
-let selectedProduct = null;
-
-function openOrderModal(id) {
-    selectedProduct = allProducts.find(p => p.ProductID == id);
-    document.getElementById('selectedProdName').innerText = selectedProduct.Name;
-    
-    // تعبئة المقاسات والألوان
-    fillSelect('size', selectedProduct.Sizes);
-    fillSelect('color', selectedProduct.Colors);
-    
+function openOrderModal(product) {
+    document.getElementById('selectedProdName').innerText = product.Name;
+    fillOptions('size', product.Sizes);
+    fillOptions('color', product.Colors);
     document.getElementById('orderModal').style.display = 'block';
+    window.currentProduct = product;
 }
 
-function fillSelect(id, data) {
+function fillOptions(id, str) {
     const el = document.getElementById(id);
-    el.innerHTML = '<option value="">اختر</option>';
-    data.split(',').forEach(item => {
+    el.innerHTML = '<option value="">Select</option>';
+    if(!str) return;
+    str.split(',').forEach(v => {
         let opt = document.createElement('option');
-        opt.value = item.trim();
-        opt.textContent = item.trim();
+        opt.value = v.trim(); opt.innerText = v.trim();
         el.appendChild(opt);
     });
 }
 
-// إغلاق المودال
-document.querySelector('.close-modal').onclick = () => {
-    document.getElementById('orderModal').style.display = 'none';
-};
-
-// إرسال الطلب
-document.getElementById('orderForm').onsubmit = async (e) => {
+async function handleOrder(e) {
     e.preventDefault();
     const btn = e.target.querySelector('button');
-    btn.innerText = "جاري الإرسال...";
-    btn.disabled = true;
+    btn.disabled = true; btn.innerText = "...";
 
-    const orderData = {
+    const payload = {
         action: 'addOrder',
         payload: {
-            ProductID: selectedProduct.ProductID,
-            ProductName: selectedProduct.Name,
-            Price: selectedProduct.NewPrice,
+            ProductID: window.currentProduct.ProductID,
+            ProductName: window.currentProduct.Name,
             FullName: document.getElementById('fullName').value,
             Phone: "+213" + document.getElementById('phone').value,
             Wilaya: document.getElementById('wilaya').value,
-            Address: document.getElementById('address').value,
             Size: document.getElementById('size').value,
             Color: document.getElementById('color').value,
-            ShippingCompany: document.getElementById('shipping').value,
-            Quantity: 1
+            Price: window.currentProduct.NewPrice
         }
     };
 
     try {
-        const res = await fetch(SCRIPT_URL, {
-            method: 'POST',
-            body: JSON.stringify(orderData)
-        });
-        showToast("تم إرسال طلبك بنجاح!");
+        await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
+        alert("Success! / تم الطلب بنجاح");
         document.getElementById('orderModal').style.display = 'none';
     } catch (err) {
-        showToast("حدث خطأ، حاول ثانية");
+        alert("Error connecting to server");
     } finally {
-        btn.innerText = "تأكيد الشراء";
-        btn.disabled = false;
+        btn.disabled = false; btn.innerText = i18n[currentLang].buyNow;
     }
-};
-
-function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.innerText = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3000);
 }

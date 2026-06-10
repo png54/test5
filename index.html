@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DZYN | المتجر الفاخر</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="loader-content">
+            <h1 class="logo-anim">DZYN</h1>
+            <div class="progress-bar"></div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-right">
+                <button id="menuBtn"><i class="fas fa-bars"></i></button>
+                <div class="logo">DZYN</div>
+            </div>
+            <div class="nav-center">
+                <a href="#" class="active">الرئيسية</a>
+                <a href="#">ملابس</a>
+                <a href="#">أحذية</a>
+            </div>
+            <div class="nav-left">
+                <button id="langBtn">FR</button>
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+                <button id="cartBtn"><i class="fas fa-shopping-bag"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-text">
+            <h2 id="heroTitle">NEW COLLECTION</h2>
+            <p id="heroSub">اكتشف الفخامة في كل خطوة</p>
+            <button class="btn-primary">تسوق الآن</button>
+        </div>
+    </header>
+
+    <!-- Products Section -->
+    <section class="container">
+        <h3 class="section-title">وصلنا حديثاً</h3>
+        <div id="productsGrid" class="products-grid">
+            <!-- سيتم جلب المنتجات هنا -->
+        </div>
+    </section>
+
+    <!-- Order Modal -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>تأكيد الطلب</h3>
+            <form id="orderForm">
+                <p id="selectedProdName" style="font-weight: bold;"></p>
+                <div class="input-group">
+                    <input type="text" id="fullName" placeholder="الاسم الكامل" required>
+                </div>
+                <div class="input-group phone-field">
+                    <span class="prefix">+213</span>
+                    <input type="tel" id="phone" placeholder="555123456" pattern="[5-7][0-9]{8}" required>
+                </div>
+                <div class="input-group">
+                    <select id="wilaya" required>
+                        <option value="">اختر الولاية</option>
+                        <!-- الولايات الجزائرية ستضاف عبر الـ JS -->
+                    </select>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="address" placeholder="العنوان بالتفصيل" required>
+                </div>
+                <div class="input-group row">
+                    <select id="size" required><option value="">المقاس</option></select>
+                    <select id="color" required><option value="">اللون</option></select>
+                </div>
+                <div class="input-group">
+                    <select id="shipping" required>
+                        <option value="Yalidine">Yalidine Express</option>
+                        <option value="ZR">ZR Express</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit">تأكيد الشراء</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

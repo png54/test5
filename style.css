@@ -1,0 +1,142 @@
+/* الإعدادات العامة للمتجر الفاخر */
+:root {
+    --primary: #000000;      /* الأسود الفاخر */
+    --secondary: #ffffff;    /* الأبيض */
+    --gray: #f5f5f5;         /* الرمادي الفاتح للخلفيات */
+    --dark-gray: #767676;    /* للنصوص الثانوية */
+    --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    font-family: 'Cairo', 'Montserrat', sans-serif;
+    background-color: var(--secondary);
+    color: var(--primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- شاشة التحميل (Loading Screen) --- */
+#loader {
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-content { text-align: center; }
+.logo-anim {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: 12px;
+    margin-bottom: 20px;
+    animation: fadePulse 1.5s infinite;
+}
+
+@keyframes fadePulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.98); }
+}
+
+/* --- الهيدر (Navbar) --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 15px 5%;
+    z-index: 1000;
+    border-bottom: 1px solid #eee;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+}
+
+.nav-center a {
+    color: var(--primary);
+    margin: 0 15px;
+    font-weight: 400;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.nav-left button {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+/* --- الهيرو (Hero Section) --- */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--gray);
+    position: relative;
+    padding-top: 80px;
+}
+
+.hero-text h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2rem, 8vw, 5rem);
+    font-weight: 300;
+    letter-spacing: 10px;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--secondary);
+    padding: 15px 40px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background: #333;
+}
+
+/* --- شبكة المنتجات (Products Grid) --- */
+.container {
+    padding: 80px 5%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 50px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax

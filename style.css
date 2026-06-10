@@ -1,142 +1,191 @@
-/* الإعدادات العامة للمتجر الفاخر */
+/* تصميم مستوحى من Zara - DZYN Luxury Store */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;700&family=Montserrat:wght@100;300;500&display=swap');
+
 :root {
-    --primary: #000000;      /* الأسود الفاخر */
-    --secondary: #ffffff;    /* الأبيض */
-    --gray: #f5f5f5;         /* الرمادي الفاتح للخلفيات */
-    --dark-gray: #767676;    /* للنصوص الثانوية */
-    --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    --black: #000000;
+    --white: #ffffff;
+    --bg-gray: #f8f8f8;
+    --border-color: #e5e5e5;
+    --text-muted: #767676;
+    --font-main: 'Montserrat', 'Cairo', sans-serif;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    list-style: none;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Cairo', 'Montserrat', sans-serif;
-    background-color: var(--secondary);
-    color: var(--primary);
-    line-height: 1.6;
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--black);
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* --- شاشة التحميل (Loading Screen) --- */
-#loader {
-    position: fixed;
-    inset: 0;
-    background: #fff;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.loader-content { text-align: center; }
-.logo-anim {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 3.5rem;
-    font-weight: 700;
-    letter-spacing: 12px;
-    margin-bottom: 20px;
-    animation: fadePulse 1.5s infinite;
-}
-
-@keyframes fadePulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.3; transform: scale(0.98); }
-}
-
-/* --- الهيدر (Navbar) --- */
+/* --- الهيدر (Minimalist Navbar) --- */
 .navbar {
     position: fixed;
-    top: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
-    padding: 15px 5%;
-    z-index: 1000;
-    border-bottom: 1px solid #eee;
-}
-
-.nav-container {
+    top: 0; width: 100%;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.98);
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    padding: 0 4%;
+    z-index: 2000;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .logo {
-    font-family: 'Montserrat', sans-serif;
     font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: 4px;
-}
-
-.nav-center a {
-    color: var(--primary);
-    margin: 0 15px;
-    font-weight: 400;
-    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 8px;
     text-transform: uppercase;
+    cursor: pointer;
 }
 
-.nav-left button {
-    background: none;
-    border: none;
-    font-size: 1.1rem;
-    margin-left: 15px;
-    cursor: pointer;
+.nav-links { display: flex; gap: 30px; }
+.nav-links a {
+    text-decoration: none;
+    color: var(--black);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 300;
 }
 
 /* --- الهيرو (Hero Section) --- */
 .hero {
-    height: 100vh;
+    height: 80vh;
+    width: 100%;
+    background-color: var(--bg-gray);
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     text-align: center;
-    background: var(--gray);
-    position: relative;
-    padding-top: 80px;
+    padding-top: 70px;
 }
 
-.hero-text h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(2rem, 8vw, 5rem);
-    font-weight: 300;
-    letter-spacing: 10px;
+.hero h2 {
+    font-weight: 100;
+    font-size: 3.5rem;
+    letter-spacing: 15px;
+    text-transform: uppercase;
     margin-bottom: 20px;
 }
 
-.btn-primary {
-    background: var(--primary);
-    color: var(--secondary);
-    padding: 15px 40px;
-    border: none;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: var(--transition);
+.hero p {
+    font-weight: 300;
+    letter-spacing: 4px;
+    color: var(--text-muted);
+    margin-bottom: 30px;
 }
 
-.btn-primary:hover {
-    background: #333;
-}
-
-/* --- شبكة المنتجات (Products Grid) --- */
+/* --- شبكة المنتجات (The Grid) --- */
 .container {
-    padding: 80px 5%;
+    padding: 60px 4%;
 }
 
 .section-title {
-    text-align: center;
-    font-size: 1.5rem;
-    margin-bottom: 50px;
-    letter-spacing: 3px;
+    font-weight: 300;
+    font-size: 1.2rem;
+    letter-spacing: 5px;
     text-transform: uppercase;
+    margin-bottom: 40px;
 }
 
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax
+    grid-template-columns: repeat(4, 1fr); /* 4 منتجات في الصف للحاسوب */
+    gap: 15px; /* فجوة صغيرة تعطي طابع مودرن */
+}
+
+.product-card {
+    text-decoration: none;
+    color: var(--black);
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+.img-wrapper {
+    width: 100%;
+    aspect-ratio: 2 / 3; /* طول مثالي لصور الملابس */
+    overflow: hidden;
+    background-color: var(--bg-gray);
+    position: relative;
+}
+
+.product-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* الصور لن تتمدد بل ستقص لتناسب المربع */
+    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+.product-info {
+    padding: 12px 0;
+}
+
+.product-info h4 {
+    font-weight: 300;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.product-info .price {
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* --- المودال (Order Modal) --- */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,0.95); /* خلفية بيضاء شفافة للسعر */
+    z-index: 3000;
+    padding: 20px;
+}
+
+.modal-content {
+    max-width: 500px;
+    margin: 50px auto;
+    background: white;
+    padding: 40px;
+    border: 1px solid var(--border-color);
+}
+
+.input-group { margin-bottom: 20px; }
+input, select {
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    border-bottom: 1px solid var(--black); /* تصميم Zara: خط سفلي فقط */
+    font-family: var(--font-main);
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.btn-submit {
+    width: 100%;
+    background: var(--black);
+    color: var(--white);
+    padding: 15px;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* --- الجوال (Mobile) --- */
+@media (max-width: 900px) {
+    .products-grid { grid-template-columns: repeat(2, 1fr); } /* منتجين في الصف للجوال */
+    .hero h2 { font-size: 1.8rem; letter-spacing: 5px; }
+    .nav-links { display: none; } /* إخفاء الروابط في الجوال */
+}

@@ -3,57 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DZYN | Zara Inspired Store</title>
+    <title>DZYN | Luxury Fashion</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Loading -->
-    <div id="loader" style="position:fixed; inset:0; background:#fff; z-index:9999; display:flex; justify-content:center; align-items:center; letter-spacing:5px;">
-        LOADING DZYN...
-    </div>
+    <div id="loader">DZYN</div>
 
     <nav class="navbar">
-        <div class="logo">DZYN</div>
-        <div class="nav-links">
-            <a href="#" data-key="home">الرئيسية</a>
-            <a href="#" data-key="clothes">ملابس</a>
-            <a href="#" data-key="shoes">أحذية</a>
-        </div>
-        <div class="nav-left">
-            <button id="langBtn" style="background:none; border:1px solid #000; padding:5px 10px; cursor:pointer; font-family:'Montserrat';">FR</button>
+        <div class="nav-content">
+            <div class="logo">DZYN</div>
+            <div class="nav-right">
+                <button id="langBtn">FR</button>
+            </div>
         </div>
     </nav>
 
     <header class="hero">
-        <h2 data-key="heroTitle">NEW COLLECTION</h2>
-        <p data-key="heroSub">SUMMER / AUTUMN 2024</p>
-        <button class="btn-primary" data-key="shopNow" style="background:black; color:white; padding:15px 40px; border:none; cursor:pointer; letter-spacing:2px;">تسوق الآن</button>
+        <div class="hero-info">
+            <h1 data-key="heroTitle">NEW COLLECTION</h1>
+            <p data-key="heroSub">إبداع بلا حدود</p>
+        </div>
     </header>
 
-    <main class="container">
-        <h3 class="section-title" data-key="newArrivals">وصلنا حديثاً</h3>
+    <main class="main-container">
+        <h2 class="section-title" data-key="newArrivals">وصلنا حديثاً</h2>
         <div id="productsGrid" class="products-grid">
-            <!-- المنتجات تُضاف هنا برمجياً -->
+            <!-- سيتم حقن المنتجات هنا عبر السكريبت -->
         </div>
     </main>
 
-    <!-- Modal للطلب -->
     <div id="orderModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" style="float:left; cursor:pointer;">إغلاق X</span>
-            <h3 style="letter-spacing:3px; margin-bottom:30px;" data-key="confirmOrder">تأكيد الطلب</h3>
+        <div class="modal-box">
+            <span class="close-modal">إغلاق ×</span>
+            <h3 data-key="confirmOrder">تفاصيل الطلب</h3>
             <form id="orderForm">
-                <p id="selectedProdName" style="font-weight:bold; margin-bottom:20px;"></p>
+                <div id="selectedProdName" class="prod-name-display"></div>
                 <input type="text" id="fullName" placeholder="الاسم الكامل" required>
-                <input type="tel" id="phone" placeholder="رقم الهاتف (555...)" required style="direction:ltr;">
-                <select id="wilaya" required><option value="">اختر الولاية</option></select>
+                <div class="phone-row">
+                    <span class="cc">+213</span>
+                    <input type="tel" id="phone" placeholder="555123456" required>
+                </div>
+                <select id="wilaya" required><option value="">الولاية</option></select>
                 <input type="text" id="address" placeholder="العنوان" required>
-                <div style="display:flex; gap:10px;">
+                <div class="form-row">
                     <select id="size" required><option value="">المقاس</option></select>
                     <select id="color" required><option value="">اللون</option></select>
                 </div>
-                <button type="submit" class="btn-submit" data-key="buyNow">تأكيد الشراء</button>
+                <button type="submit" class="btn-confirm" data-key="buyNow">تأكيد الطلب</button>
             </form>
         </div>
     </div>

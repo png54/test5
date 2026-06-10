@@ -1,12 +1,10 @@
-/* تصميم مستوحى من Zara - DZYN Luxury Store */
+/* التصميم الاحترافي النهائي - DZYN Luxury Store */
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;700&family=Montserrat:wght@100;300;500&display=swap');
 
 :root {
     --black: #000000;
     --white: #ffffff;
-    --bg-gray: #f8f8f8;
-    --border-color: #e5e5e5;
-    --text-muted: #767676;
+    --border-color: #eeeeee;
     --font-main: 'Montserrat', 'Cairo', sans-serif;
 }
 
@@ -16,176 +14,145 @@ body {
     font-family: var(--font-main);
     background-color: var(--white);
     color: var(--black);
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
 }
 
-/* --- الهيدر (Minimalist Navbar) --- */
+/* الهيدر - بسيط ورفيع */
 .navbar {
     position: fixed;
     top: 0; width: 100%;
-    height: 70px;
-    background: rgba(255, 255, 255, 0.98);
+    height: 60px;
+    background: #fff;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 4%;
+    padding: 0 5%;
     z-index: 2000;
     border-bottom: 1px solid var(--border-color);
 }
 
 .logo {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
+    letter-spacing: 6px;
     font-weight: 500;
-    letter-spacing: 8px;
-    text-transform: uppercase;
-    cursor: pointer;
 }
 
-.nav-links { display: flex; gap: 30px; }
-.nav-links a {
-    text-decoration: none;
-    color: var(--black);
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 300;
-}
-
-/* --- الهيرو (Hero Section) --- */
-.hero {
-    height: 80vh;
-    width: 100%;
-    background-color: var(--bg-gray);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding-top: 70px;
-}
-
-.hero h2 {
-    font-weight: 100;
-    font-size: 3.5rem;
-    letter-spacing: 15px;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-}
-
-.hero p {
-    font-weight: 300;
-    letter-spacing: 4px;
-    color: var(--text-muted);
-    margin-bottom: 30px;
-}
-
-/* --- شبكة المنتجات (The Grid) --- */
+/* حاوية المنتجات - هي التي تتحكم في عرض المتجر */
 .container {
-    padding: 60px 4%;
+    max-width: 1400px; /* يمنع الموقع من التوسع الزائد في الشاشات الكبيرة */
+    margin: 80px auto 40px; /* ممركز في الوسط مع مسافة علوية للهيدر */
+    padding: 0 20px;
 }
 
 .section-title {
     font-weight: 300;
-    font-size: 1.2rem;
-    letter-spacing: 5px;
+    font-size: 1rem;
+    letter-spacing: 4px;
     text-transform: uppercase;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
+/* شبكة المنتجات - ضبط حجم الصور */
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 منتجات في الصف للحاسوب */
-    gap: 15px; /* فجوة صغيرة تعطي طابع مودرن */
+    grid-template-columns: repeat(4, 1fr); /* 4 في الصف للحاسوب */
+    gap: 20px;
 }
 
 .product-card {
-    text-decoration: none;
-    color: var(--black);
     cursor: pointer;
-    margin-bottom: 30px;
+    transition: opacity 0.3s;
 }
 
+.product-card:hover { opacity: 0.8; }
+
+/* الجزء الأهم: التحكم في حجم الصورة */
 .img-wrapper {
     width: 100%;
-    aspect-ratio: 2 / 3; /* طول مثالي لصور الملابس */
+    height: 400px; /* طول ثابت للصورة في الحاسوب لتبدو احترافية */
     overflow: hidden;
-    background-color: var(--bg-gray);
-    position: relative;
+    background-color: #f9f9f9;
 }
 
 .product-card img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* الصور لن تتمدد بل ستقص لتناسب المربع */
-    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.product-card:hover img {
-    transform: scale(1.05);
+    object-fit: cover; /* يقص الصورة لتملأ الـ 400px دون تمطيط */
+    object-position: center top; /* يركز على أعلى الصورة (رأس المودل) */
 }
 
 .product-info {
     padding: 12px 0;
+    text-align: center;
 }
 
 .product-info h4 {
     font-weight: 300;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     letter-spacing: 1px;
     text-transform: uppercase;
-    margin-bottom: 5px;
 }
 
 .product-info .price {
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    margin-top: 5px;
 }
 
-/* --- المودال (Order Modal) --- */
+/* المودال - شكل أرقى */
 .modal {
     display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(255,255,255,0.95); /* خلفية بيضاء شفافة للسعر */
+    position: fixed; inset: 0;
+    background: rgba(255,255,255,0.98);
     z-index: 3000;
-    padding: 20px;
+    overflow-y: auto;
 }
 
 .modal-content {
-    max-width: 500px;
-    margin: 50px auto;
-    background: white;
-    padding: 40px;
-    border: 1px solid var(--border-color);
+    max-width: 400px;
+    margin: 60px auto;
+    padding: 20px;
 }
 
-.input-group { margin-bottom: 20px; }
 input, select {
     width: 100%;
-    padding: 12px 0;
+    padding: 12px 5px;
     border: none;
-    border-bottom: 1px solid var(--black); /* تصميم Zara: خط سفلي فقط */
+    border-bottom: 1px solid #000;
+    margin-bottom: 20px;
     font-family: var(--font-main);
     outline: none;
-    font-size: 0.9rem;
 }
 
 .btn-submit {
     width: 100%;
-    background: var(--black);
-    color: var(--white);
+    background: #000;
+    color: #fff;
     padding: 15px;
     border: none;
-    text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     cursor: pointer;
-    margin-top: 20px;
 }
 
-/* --- الجوال (Mobile) --- */
-@media (max-width: 900px) {
-    .products-grid { grid-template-columns: repeat(2, 1fr); } /* منتجين في الصف للجوال */
-    .hero h2 { font-size: 1.8rem; letter-spacing: 5px; }
-    .nav-links { display: none; } /* إخفاء الروابط في الجوال */
+/* تعديلات الجوال - مهمة جداً */
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr); /* صورتين بجانب بعض فقط */
+        gap: 10px;
+    }
+    
+    .img-wrapper {
+        height: 250px; /* تقليل طول الصورة في الجوال لكي لا تملأ الشاشة */
+    }
+
+    .hero h2 { font-size: 1.5rem; }
+    
+    .container { margin-top: 70px; }
+}
+
+@media (max-width: 480px) {
+    .img-wrapper {
+        height: 200px; /* طول أصغر للهواتف الصغيرة جداً */
+    }
 }

@@ -98,7 +98,7 @@
             margin-top: 40px;
             margin-bottom: 40px;
             padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.15);
+            border-top: 1px solid rgba(255,255,255,0.2);
         }
         .sidebar-reference h4 {
             color: #e6b422;
@@ -133,6 +133,7 @@
             height: 100px;
             object-fit: cover;
         }
+        /* صورة 4 أضعاف في السايدبار - تظهر كاملة */
         .sidebar-ref-item.super-wide {
             grid-column: span 2;
         }
@@ -142,51 +143,43 @@
             background-color: #1a1a1a;
         }
 
-        /* ========== LUXURY SOCIAL LINKS (SIDEBAR) ========== */
         .social-links-side {
             text-align: center;
             margin-top: auto;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 40px;
         }
 
         .social-links-side h4 {
-            color: #ffffff60;
-            font-size: 0.75rem;
+            color: #ffffff80;
+            font-size: 0.8rem;
             margin-bottom: 15px;
-            letter-spacing: 3px;
-            font-weight: 600;
-            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .social-icons-side {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
         .social-icons-side a {
-            color: #e6b422;
-            font-size: 1rem;
-            width: 38px;
-            height: 38px;
+            color: #ffffff;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            width: 35px;
+            height: 35px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(230, 180, 34, 0.2);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            text-decoration: none;
+            background: rgba(255,255,255,0.1);
         }
 
         .social-icons-side a:hover {
-            color: #000000;
-            background: #e6b422;
-            border-color: #e6b422;
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(230, 180, 34, 0.3);
+            color: #e6b422;
+            background: rgba(230,180,34,0.2);
+            transform: translateY(-3px);
         }
 
         .mobile-menu-btn {
@@ -313,52 +306,44 @@
             border-color: #e6b422;
         }
 
-        /* ========== LUXURY SOCIAL LINKS (MOBILE SECTION) ========== */
         .mobile-social-section {
             display: none;
             text-align: center;
             padding: 50px 20px;
-            background: #0a0a0a;
+            background: #1a1a1a;
             color: white;
-            border-bottom: 1px solid rgba(230, 180, 34, 0.1);
         }
 
         .mobile-social-section h3 {
-            font-size: 1.2rem;
-            margin-bottom: 25px;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
             font-weight: 600;
-            letter-spacing: 2px;
-            color: #ffffff90;
         }
 
         .mobile-social-icons {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 25px;
             flex-wrap: wrap;
         }
 
         .mobile-social-icons a {
-            color: #e6b422;
-            font-size: 1.4rem;
-            width: 50px;
-            height: 50px;
+            color: white;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+            width: 55px;
+            height: 55px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(230, 180, 34, 0.2);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            text-decoration: none;
+            background: rgba(255,255,255,0.1);
         }
 
         .mobile-social-icons a:hover {
-            color: #000000;
-            background: #e6b422;
-            border-color: #e6b422;
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(230, 180, 34, 0.3);
+            color: #e6b422;
+            background: rgba(230,180,34,0.2);
+            transform: translateY(-3px);
         }
 
         .section {
@@ -443,13 +428,14 @@
             font-size: 0.85rem;
         }
 
-        /* SERVICES GRID */
+        /* SERVICES GRID - Desktop: 2 colonnes (2x2), Mobile: 1 colonne */
         .services-grid {
             display: grid;
             gap: 30px;
             margin-top: 50px;
         }
 
+        /* Pour les écrans larges (ordinateur) : 2 colonnes */
         @media (min-width: 993px) {
             .services-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -459,6 +445,7 @@
             }
         }
 
+        /* Pour les tablettes et mobiles : 1 colonne */
         @media (max-width: 992px) {
             .services-grid {
                 grid-template-columns: 1fr;
@@ -483,6 +470,7 @@
             border-color: #e6b422;
         }
 
+        /* حاوية الأيقونة الفاخرة */
         .icon-wrapper {
             width: 80px;
             height: 80px;
@@ -535,7 +523,7 @@
             border-radius: 60px;
         }
 
-        /* ========== REFERENCE GALLERY ========== */
+        /* ========== REFERENCE GALLERY (PAGE PRINCIPALE) ========== */
         .ref-gallery {
             max-width: 1200px;
             margin: 0 auto;
@@ -573,6 +561,7 @@
             height: 300px;
             object-fit: cover;
         }
+        /* صورة 4 أضعاف في الصفحة الرئيسية - تظهر كاملة بدون قطع */
         .ref-item.super-wide {
             grid-column: span 2;
         }
@@ -683,6 +672,7 @@
                 <li><a href="#reference">Référence</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <!-- SECTION RÉFÉRENCE DANS LA BARRE LATÉRALE (SOUS CONTACT) -->
             <div class="sidebar-reference">
                 <h4>RÉFÉRENCE</h4>
                 <div class="sidebar-ref-grid">
@@ -693,20 +683,19 @@
                     <div class="sidebar-ref-item"><img src="https://f.top4top.io/p_3814bsjgd5.jpg" alt="ref5"></div>
                     <div class="sidebar-ref-item"><img src="https://g.top4top.io/p_38141flok6.jpg" alt="ref6"></div>
                     <div class="sidebar-ref-item wide"><img src="https://h.top4top.io/p_3814siazc7.jpg" alt="ref7"></div>
+                    <!-- الصورة الجديدة - تظهر كاملة -->
                     <div class="sidebar-ref-item super-wide"><img src="https://e.top4top.io/p_38147jamf1.jpg" alt="ref8 large"></div>
                 </div>
             </div>
         </div>
-        
-        <!-- LUXURY SOCIAL ICONS (SIDEBAR) -->
         <div class="social-links-side">
             <h4>SUIVEZ-MOI</h4>
             <div class="social-icons-side">
-                <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
     </div>
@@ -734,9 +723,8 @@
             </div>
         </section>
 
-        <!-- LUXURY SOCIAL ICONS (MOBILE) -->
         <div class="mobile-social-section">
-            <h3>SUIVEZ-MOI</h3>
+            <h3>Suivez-moi</h3>
             <div class="mobile-social-icons">
                 <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
@@ -754,11 +742,11 @@
                     </div>
                     <div class="about-text">
                         <h2 class="section-title">À propos</h2>
-                        <p><strong>Sami SIYOUCEF</strong> هو مستشار دولي في الاستثمار وخبير في الاتصال وإدارة وسائل الإعلام، يمتلك أكثر من 25 عاماً من الخبرة في الصحافة، الإدارة التحريرية، وإدارة المشاريع الإعلامية الكبرى.</p>
-                        <p>عضو في مجلس إدارة CGEA (الكونفدرالية العامة للمؤسسات الجزائرية)، حيث يساهم في التفكير الاستراتيجي حول التطوير الاقتصادي والاستثمار.</p>
-                        <p>حاصل على ماجستير إدارة الأعمال (MBA) في الاستثمار، ولديه خلفية أكاديمية متينة في الاتصال والإعلام: ماستر 2 في الاتصال والإعلام الحديث، ماستر في إدارة وسائل الإعلام الكبرى، وليسانس في علوم الإعلام والاتصال.</p>
-                        <p>خلال مسيرته المهنية، قام سامي سيوسف بقيادة ومرافقة إطلاق <strong>سبعة مشاريع لقنوات تلفزيونية</strong> في الجزائر ومنطقة البحر الأبيض المتوسط، واضعاً خبرته في خدمة تطوير وسائل الإعلام، استراتيجية المحتوى، الحوكمة، والابتكار.</p>
-                        <p>مساره الفريد، الذي يجمع بين الاستثمار، الاتصال، وإدارة الإعلام، يجعله شريكاً رئيسياً للمؤسسات، المستثمرين، والمنظمات الراغبة في تطوير مشاريع ذات تأثير قوي في منطقة البحر الأبيض المتوسط.</p>
+                        <p><strong>Sami SIYOUCEF</strong> est un consultant international en investissement et un expert en communication et management des médias, disposant de plus de 25 années d'expérience dans le journalisme, la direction éditoriale et la gestion de projets médiatiques à grande échelle.</p>
+                        <p>Il est membre du Conseil d'administration de la CGEA (Confédération Générale des Entreprises Algériennes), où il contribue à la réflexion stratégique sur le développement économique et l'investissement.</p>
+                        <p>Titulaire d'un MBA en investissement, il possède également une solide formation académique en communication et médias : Master II en communication et médias modernes, Master en gestion des grands médias, Licence en sciences de l'information et de la communication.</p>
+                        <p>Au cours de sa carrière, Sami SIYOUCEF a piloté et accompagné le lancement de <strong>sept projets de chaînes de télévision</strong> en Algérie et dans l'espace méditerranéen, mettant son expertise au service du développement des médias, de la stratégie de contenu, de la gouvernance et de l'innovation.</p>
+                        <p>Son parcours unique, à la croisée de l'investissement, de la communication et du management des médias, fait de lui un interlocuteur privilégié pour les entreprises, les investisseurs and les organisations souhaitant développer des projets à fort impact dans la région méditerranéenne.</p>
                         <div class="expertise-tags">
                             <span>Investissement international</span>
                             <span>Communication & médias</span>
@@ -807,12 +795,13 @@
                             <i class="fa-solid fa-key"></i>
                         </div>
                         <h3>Lancement clé en main</h3>
-                        <p>Déploiement complet, strategy de lancement, promotion, diffusion et suivi post-lancement.</p>
+                        <p>Déploiement complet, stratégie de lancement, promotion, diffusion et suivi post-lancement.</p>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- ========== SECTION RÉFÉRENCE DANS LE CORPS DE LA PAGE ========== -->
         <section class="section section-white" id="reference">
             <div class="container-custom">
                 <div style="text-align: center;">
@@ -827,6 +816,7 @@
                         <div class="ref-item"><img src="https://f.top4top.io/p_3814bsjgd5.jpg" alt="Réf 5"></div>
                         <div class="ref-item"><img src="https://g.top4top.io/p_38141flok6.jpg" alt="Réf 6"></div>
                         <div class="ref-item wide"><img src="https://h.top4top.io/p_3814siazc7.jpg" alt="Réf 7 - Large"></div>
+                        <!-- الصورة الجديدة - تظهر كاملة بدون قطع -->
                         <div class="ref-item super-wide"><img src="https://e.top4top.io/p_38147jamf1.jpg" alt="Réf 8 - Super Large"></div>
                     </div>
                 </div>
